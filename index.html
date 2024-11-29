@@ -10,6 +10,7 @@
 	<link rel="stylesheet" href="dist/reset.css">
 	<link rel="stylesheet" href="dist/reveal.css">
 	<link rel="stylesheet" href="dist/theme/black.css">
+	<link rel="stylesheet" href="plugin/pointer/pointer.css" />
 
 	<!-- Theme used for syntax highlighted code -->
 	<link rel="stylesheet" href="plugin/highlight/monokai.css">
@@ -29,7 +30,7 @@
 					<li>Testobjekt</li>
 					<li>Performance-Testing</li>
 					<li>Apache JMeter</li>
-					<li>Test Setup</li>
+					<li>Test Setup & Durchführung</li>
 					<li>Ergebnisse</li>
 					<li>Fazit</li>
 				</ul>
@@ -68,6 +69,10 @@
 			<section>
 				<section>
 					<h2>Performance-Testing ⏱️</h2>
+				</section>
+				<section>
+					<img src="images/chuck.png" alt="Chuck Norris" class="r-stretch">
+					<h1 class="fragment">💩</h1>
 				</section>
 				<section>
 					<h2>Performance-Testing Arten 🏋️🧘🚣🏃</h2>
@@ -168,7 +173,8 @@
 				<section>
 					<h2>⛅ = 😇</h2>
 					<aside class="notes">
-						Ich sehe alles in grafana live, ich kann mir den report anschauen. also bestimmt. super viel last erzeugen dank der cloud. Funktioniert auch echt super. oder nicht?
+						Ich sehe alles in grafana live, ich kann mir den report anschauen. also bestimmt. super viel
+						last erzeugen dank der cloud. Funktioniert auch echt super. oder nicht?
 					</aside>
 				</section>
 				<section>
@@ -176,25 +182,92 @@
 				</section>
 			</section>
 			<section>
-				<h2>Test Setup 🎛️</h2>
+				<section>
+					<h2>Testarchitektur I 🏗️</h2>
+				</section>
+				<section data-background-color="white">
+					<img src="images/arch1.png" class="r-stretch">
+				</section>
 			</section>
 			<section>
-				<h2>Testarchitektur I 🏗️</h2>
+				<section>
+					<h2>Fehlschlag 🪠</h2>
+					<ul class="fragment">
+						<li>RAM</li>
+						<li>CPU</li>
+						<li>Netzwerk</li>
+						<li>Ram stieg noch weiter an, wenn man zu wenig Netzwerk hatte</li>
+						<li>Reporterstellung (mindestens x5)</li>
+						<li>Nicht denken, dass es kaputt ist, es dauert nur ewig</li>
+						<li>Reports keine Chance</li>
+						<li>Grafana konnte nur noch 30 Sekunden Fenster laden</li>
+						<li>Aber Zeitdruck</li>
+					</ul>
+				</section>
+				<section>eine grafik mit auslastung</section>
+				<section>und noch eine</section>
 			</section>
 			<section>
-				<h2>Fehlschlag 💩</h2>
+				<section>
+					<h2>Testarchitektur II 🏛️🛕</h2>
+				</section>
+				<section data-background-color="white">
+					<img src="images/arch2.png" class="r-stretch">
+					<aside class="notes">
+						QLoad + Jenkins
+						Kann jeder, auch ohne cloud Kenntnisse
+						Einfach agents starten und tests unabhängig laufen lassen
+						Am ende reports einsammeln und gesamtreport erstellen
+
+
+						Wir konnten mehr, aber es wurde immer langsamer
+						Keine Fehler
+						Schwierigkeit die richtige balance aus agents und cpu last zu finden
+						Und wir waren nur statisch unterwegs
+						Fargate könnte man hier schon vergessen, interne netzwerklast ist zu hoch
+
+					</aside>
+				</section>
+				<section>
+					grafik mit weniger auslastung
+				</section>
 			</section>
 			<section>
-				<h2>Testarchitektur II 🏛️🛕</h2>
-			</section>
-			<section>
-				<h2>Ergebnisse 📈📉</h2>
+				<section>
+					<h2>Ergebnisse 📈📉</h2>
+				</section>
+				<section>
+					<img src="images/ergebnis.png" class="r-stretch">
+					<aside class="notes">
+						Nicht vorenthalten
+						Ein Traum für jeden Performancetester…zumindest fast:
+					</aside>
+				</section>
+				<section>
+					und noch mehr
+				</section>
+				<section>
+					und noch mehr
+				</section>
 			</section>
 			<section>
 				<h2>Lösungsansätze (mittel-/langfristig) ⭐</h2>
+				<aside class="notes">
+					K6 (aber eben kein report; wie viel sie schaffen ….)
+					Report halt asynchron laufen lassen
+					Responses nicht im report speichern
+					Skalierung selbst implementieren :D
+				</aside>
 			</section>
 			<section>
 				<h2>Fazit 🩻</h2>
+				<ul>
+					<li>Performance-Tests sind essenziell für die Zuverlässigkeit von Anwendungen.</li>
+					<li>Apache JMeter ist ein mächtiges Tool, aber nicht ohne Herausforderungen.</li>
+					<li>Skalierung und Ressourcenmanagement sind kritische Faktoren.</li>
+					<li>Cloud-basierte Lösungen bieten Potenzial, aber auch neue Probleme.</li>
+					<li>Kontinuierliche Optimierung und Anpassung sind notwendig.</li>
+				</ul>
 			</section>
 			<section>
 				<h2>Vielen Dank! 🙏</h2>
@@ -206,10 +279,22 @@
 	<script src="plugin/notes/notes.js"></script>
 	<script src="plugin/markdown/markdown.js"></script>
 	<script src="plugin/highlight/highlight.js"></script>
+	<script src="plugin/pointer/pointer.js"></script>
+	<script src="plugin/zoom/zoom.js"></script>
+	<script src="plugin/search/search.js"></script>
 	<script>
 		Reveal.initialize({
+			pointer: {
+				key: "q", // key to enable pointer, default "q", not case-sensitive
+				color: "red", // color of a cursor, default "red" any valid CSS color
+				opacity: 0.8, // opacity of cursor, default 0.8
+				pointerSize: 30, // pointer size in px, default 12
+				alwaysVisible: false, // should pointer mode be always visible? default "false"
+				tailLength: 10, // NOT IMPLEMENTED YET!!! how long the "tail" should be? default 10
+			},
+			slideNumber: 'c/t',
 			hash: true,
-			plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+			plugins: [RevealMarkdown, RevealHighlight, RevealNotes, RevealPointer, RevealZoom, RevealSearch]
 		});
 	</script>
 </body>
