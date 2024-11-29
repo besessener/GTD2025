@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<title>GTD2025</title>
+
+	<link rel="stylesheet" href="dist/reset.css">
+	<link rel="stylesheet" href="dist/reveal.css">
+	<link rel="stylesheet" href="dist/theme/black.css">
+
+	<!-- Theme used for syntax highlighted code -->
+	<link rel="stylesheet" href="plugin/highlight/monokai.css">
+</head>
+
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section>
+				<h2>Wenn Performancetest-Tools unter ihrer eigenen Last zusammenbrechen</h2>
+				<p><img src="images/cover.png" style="width:40%"></p>
+			</section>
+			<section>
+				<h2>Agenda 📋</h2>
+				<ul>
+					<li>kurze Vorstellung</li>
+					<li>Testobjekt</li>
+					<li>Performance-Testing</li>
+					<li>Apache JMeter</li>
+					<li>Test Setup</li>
+					<li>Ergebnisse</li>
+					<li>Fazit</li>
+				</ul>
+			</section>
+			<section>
+				<h2>Der Sprecher 🙊</h2><img src="images/matthias.png" class="r-stretch">
+				<p>Matthias Eggert</p>
+			</section>
+			<section>
+				<section>
+					<h2>Testobjekt 🧫</h2>
+				</section>
+				<section>
+					<h2>Demokratischer Prozess 🗽</h2>
+					<ul>
+						<li>Viele Millionen Menschen, Dienste und Crawler</li>
+						<li>7-stellige Zahl von Requests pro Minute</li>
+						<li>Und zwar in der Regel genau an einem Tag</li>
+						<li>Auf unterschiedliche Endpunkte</li>
+					</ul>
+				</section>
+				<section data-background-color="white"><img src="images/halber-donut.png" class="r-stretch"></section>
+				<section data-background-color="white"><img src="images/donuts.png" class="r-stretch"></section>
+				<section>
+					<h2>Demokratischer Prozess 🗽</h2>
+					<ul>
+						<li>Viele Millionen Menschen, Dienste und Crawler</li>
+						<li>7-stellige Zahl von Requests pro Minute</li>
+						<li>Und zwar in der Regel genau an einem Tag</li>
+						<li>Auf unterschiedliche Endpunkte</li>
+						<li>Große Responses</li>
+						<li>DDoS</li>
+					</ul>
+				</section>
+			</section>
+			<section>
+				<section>
+					<h2>Performance-Testing ⏱️</h2>
+				</section>
+				<section>
+					<h2>Performance-Testing Arten 🏋️🧘🚣🏃</h2>
+					<img src="images/performance-tests-types.png" alt="Performance-Testing Arten" class="r-stretch">
+					<aside class="notes">
+						Performance-Tests umfassen verschiedene Testarten, darunter Lasttests, Stress-Tests und
+						Ausdauer- oder Dauertests. Jede dieser Testarten zielt darauf ab, unterschiedliche
+						Leistungsaspekte einer Anwendung zu bewerten. Zum Beispiel:
+
+						- Lasttests simulieren eine typische Nutzerbelastung, um zu sehen, wie die Anwendung unter
+						normalen Bedingungen funktioniert.
+						- Stress-Tests erhöhen die Belastung schrittweise über das normale Niveau hinaus, um die Grenzen
+						der Anwendung zu finden.
+						- Kapazitäts-Tests gehen mit Absicht über die Grenzen der Anwendung hinaus, um zu sehen, wie sie
+						scheitert.
+						- Ausdauer-Tests prüfen die Anwendung auf ihre Fähigkeit, über einen langen Zeitraum unter
+						erwarteter Belastung zuverlässig zu funktionieren.
+
+						Durch Performance-Tests können wir Engpässe identifizieren, die Leistung optimieren und
+						sicherstellen, dass unsere Anwendung auch unter Spitzenlast oder bei steigender Nutzerzahl
+						zuverlässig funktioniert. Mit diesem grundlegenden Verständnis von Performance-Tests können wir
+						nun einen spezifischeren Blick auf Apache JMeter werfen und verstehen, wie es uns unterstützt,
+						unsere Anwendungen zu testen.
+					</aside>
+				</section>
+				<section>
+					<h2>Auto-Scaling What 🚗🤔❓</h2>
+					<img src="images/cloud.webp" class="r-stretch">
+					<aside class="notes">
+						Open source apache foundation
+						Verhältnismäßg resourcenhungrig
+						Aber zuverlässig
+				</section>
+				<section>
+					<h2>Konstante Hochlast ↗️</h2>
+					<img src="images/hochlast.png" alt="Performance-Testing Arten" class="r-stretch">
+				</section>
+			</section>
+			<section>
+				<section>
+					<section>
+						<h2>Apache JMeter 🪶</h2>
+						<ul>
+							<li>Open Source</li>
+							<li>Java basiert</li>
+							<li>GUI und CLI</li>
+							<li>Skalierbar</li>
+							<li>Plugins</li>
+						</ul>
+						<aside class="notes">
+							Apache JMeter ist ein mächtiges Open-Source-Tool, das vorwiegend für Performance-Tests und
+							Lasttests von Anwendungen eingesetzt wird. Entwickelt in Java, bietet JMeter eine flexible
+							Plattform für die Bewertung der Leistung von Webanwendungen.
+
+							JMeter kann sowohl über eine grafische Benutzeroberfläche (GUI) als auch über die
+							Kommandozeilenschnittstelle (CLI) bedient zu werden. Während die GUI insbesondere während
+							der
+							Testentwicklungsphase für ihre Benutzerfreundlichkeit und visuelle Rückmeldung geschätzt
+							wird,
+							ermöglicht die CLI einen effizienteren Betrieb in Testumgebungen, was besonders bei der
+							Integration in CI/CD-Pipelines nützlich ist. Oder eben auch für eine Integration in
+							Cloud-Lösungen wie Azure Load Testing. Wir haben es auch in einer eigenen cloud-basierten
+							Lasttestlösung im Einsatz, QLoad.
+
+							JMeter zeichnet sich durch seine Skalierbarkeit aus. Es kann auf einzelnen Workstations für
+							einfache Testaufgaben eingesetzt werden, lässt sich aber auch in großem Umfang für komplexe
+							Lasttests verwenden, die mehrere Server umfassen können. Diese Skalierbarkeit macht es zu
+							einem
+							idealen Werkzeug für Unternehmen jeder Größe, um die Leistung ihrer Anwendungen unter
+							verschiedenen Lastbedingungen zu bewerten.
+
+							Ein weiteres wichtiges Merkmal von JMeter sind die zahlreichen verfügbaren Plugins, die
+							seine
+							Funktionalität erweitern. Diese Plugins ermöglichen es den Benutzern, neue Testfähigkeiten
+							hinzuzufügen, die Anpassung von Berichten zu verbessern und die Integration mit anderen
+							Tools
+							und Plattformen zu vereinfachen. Obwohl JMeter bereits eine umfassende Palette an
+							Testmöglichkeiten bietet, erlauben es diese Plugins, das Tool noch weiter an spezifische
+							Bedürfnisse anzupassen. Die Entwicklung eigener Plugins ist ebenfalls möglich, was die
+							Flexibilität von JMeter zusätzlich erhöht.
+
+							Insgesamt bietet Apache JMeter als ein vielseitiges, leistungsstarkes Tool für
+							Performance-Testing und Lasttest eine robuste Lösung für Entwickler und
+							Qualitätssicherungs-Teams. Seine Open-Source-Natur, gepaart mit umfangreicher Dokumentation
+							und
+							einer aktiven Community, macht es zu einer zugänglichen und wertvollen Ressource für die
+							Optimierung der Leistung von Webanwendungen und anderen Diensten.
+						</aside>
+					</section>
+				</section>
+				<section>
+					<h2>JMeter Skalieren ⚖️</h2>
+					<img src="images/jmeter-controller-worker.png" class="r-stretch">
+					<aside class="notes">
+						(K6 angeblich 5 mio pro Minute von einer Maschine)
+					</aside>
+				</section>
+				<section>
+					<h2>⛅ = 😇</h2>
+					<aside class="notes">
+						Ich sehe alles in grafana live, ich kann mir den report anschauen. also bestimmt. super viel last erzeugen dank der cloud. Funktioniert auch echt super. oder nicht?
+					</aside>
+				</section>
+				<section>
+					<h2>⛈️ = 😈</h2>
+				</section>
+			</section>
+			<section>
+				<h2>Test Setup 🎛️</h2>
+			</section>
+			<section>
+				<h2>Testarchitektur I 🏗️</h2>
+			</section>
+			<section>
+				<h2>Fehlschlag 💩</h2>
+			</section>
+			<section>
+				<h2>Testarchitektur II 🏛️🛕</h2>
+			</section>
+			<section>
+				<h2>Ergebnisse 📈📉</h2>
+			</section>
+			<section>
+				<h2>Lösungsansätze (mittel-/langfristig) ⭐</h2>
+			</section>
+			<section>
+				<h2>Fazit 🩻</h2>
+			</section>
+			<section>
+				<h2>Vielen Dank! 🙏</h2>
+			</section>
+		</div>
+	</div>
+
+	<script src="dist/reveal.js"></script>
+	<script src="plugin/notes/notes.js"></script>
+	<script src="plugin/markdown/markdown.js"></script>
+	<script src="plugin/highlight/highlight.js"></script>
+	<script>
+		Reveal.initialize({
+			hash: true,
+			plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+		});
+	</script>
+</body>
+
+</html>
