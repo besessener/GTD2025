@@ -55,7 +55,7 @@
 				<section data-background-color="white"><img src="images/halber-donut.png" class="r-stretch"></section>
 				<section data-background-color="white"><img src="images/donuts.png" class="r-stretch"></section>
 				<section>
-					<h2>Demokratischer Prozess 🗽</h2>
+					<h2>Zurück zum Testobjekt 🗽</h2>
 					<ul>
 						<li>Viele Millionen Menschen, Dienste und Crawler</li>
 						<li>7-stellige Zahl von Requests pro Minute</li>
@@ -193,25 +193,65 @@
 				<section>
 					<h2>Fehlschlag 🪠</h2>
 					<ul class="fragment">
-						<li>RAM</li>
-						<li>CPU</li>
-						<li>Netzwerk</li>
-						<li>Ram stieg noch weiter an, wenn man zu wenig Netzwerk hatte</li>
+						<li>RAM, CPU, Netzwerk</li>
+						<li>RAM stieg noch weiter an, wenn man zu wenig Netzwerk hatte</li>
 						<li>Reporterstellung (mindestens x5)</li>
-						<li>Nicht denken, dass es kaputt ist, es dauert nur ewig</li>
-						<li>Reports keine Chance</li>
+						<ul>
+							<li>Nicht denken, dass es kaputt ist, es dauert nur ewig</li>
+						</ul>
 						<li>Grafana konnte nur noch 30 Sekunden Fenster laden</li>
 						<li>Aber Zeitdruck</li>
 					</ul>
+					<aside class="notes">
+						http://localhost:3000/d/PyR6xlG7z/system-monitoring-with-influxdb-cloud-and-telegraf?orgId=1&from=2024-04-16T14:27:42.853Z&to=2024-04-16T18:25:47.945Z&var-bucket=3-2-KommONE&var-hosts=$__all
+						http://localhost:3000/d/PyR6xlG7z/system-monitoring-with-influxdb-cloud-and-telegraf?orgId=1&from=2024-04-21T22:00:00.000Z&to=2024-04-24T21:59:59.000Z&var-bucket=3-2-xl&var-hosts=$__all
+						http://localhost:3000/d/PyR6xlG7z/system-monitoring-with-influxdb-cloud-and-telegraf?orgId=1&from=2024-04-23T07:25:44.162Z&to=2024-04-23T13:19:07.926Z&var-bucket=3-2-xxl&var-hosts=$__all
+						http://localhost:3000/d/PyR6xlG7z/system-monitoring-with-influxdb-cloud-and-telegraf?orgId=1&from=2024-04-22T13:29:18.374Z&to=2024-04-22T14:16:11.560Z&var-bucket=3-2-xl&var-hosts=$__all
+
+						------
+						http://localhost:3000/d/PyR6xlG7z/system-monitoring-with-influxdb-cloud-and-telegraf?orgId=1&from=2024-12-02T15:33:17.987Z&to=2024-12-02T15:38:43.410Z&var-bucket=3-2-l&var-hosts=$__all&refresh=5s
+						http://localhost:3000/d/PyR6xlG7z/system-monitoring-with-influxdb-cloud-and-telegraf?orgId=1&from=2024-12-02T15:48:08.702Z&to=2024-12-02T15:51:02.601Z&var-bucket=3-2-l&var-hosts=$__all&refresh=5s
+						http://localhost:3000/d/PyR6xlG7z/system-monitoring-with-influxdb-cloud-and-telegraf?orgId=1&from=2024-12-02T16:25:22.202Z&to=2024-12-02T16:29:01.066Z&var-bucket=3-2-l&var-hosts=$__all&refresh=5s
+						-----
+						http://localhost:3000/d/PyR6xlG7z/system-monitoring-with-influxdb-cloud-and-telegraf?orgId=1&from=2024-12-03T12:22:50.417Z&to=2024-12-03T12:32:27.058Z&var-bucket=3-2-l&var-hosts=$__all&refresh=auto
+						http://localhost:3000/d/PyR6xlG7z/system-monitoring-with-influxdb-cloud-and-telegraf?orgId=1&from=2024-12-03T12:34:19.307Z&to=2024-12-03T13:08:56.282Z&var-bucket=3-2-l&var-hosts=$__all&refresh=auto
+					</aside>
 				</section>
-				<section>eine grafik mit auslastung</section>
-				<section>und noch eine</section>
+				<section><img src="images/run1.png" class="r-stretch"></section>
+				<section>
+					<h2>🪲🐞</h2>
+					<blockquote class="r-stretch">However, remote mode does use more resources than running the same
+						number of CLI mode tests independently. If many server instances are used, the client JMeter can
+						become overloaded, as can the client network connection. This has been improved by switching to
+						Stripped modes (see below) but you should always check that your client is not overloaded.
+					</blockquote>
+				</section>
+				<section>
+					<blockquote class="r-stretch">
+						Note that while you can execute the JMeterEngine on your application server, you need to be
+						mindful of the fact that this will be adding processing overhead on the application server and
+						thus your testing results will be somewhat tainted. The recommended approach is to have one or
+						more machines on the same Ethernet segment as your application server that you configure to run
+						the JMeter Engine. This will minimize the impact of the network on the test results without
+						impacting the performance of the application server itself.</blockquote>
+				</section>
+				<section>
+					<h2>JMeter Master Config ⚙️</h2><img src="images/jmeter-master-config.png" class="r-stretch">
+				</section>
 			</section>
 			<section>
 				<section>
 					<h2>Testarchitektur II 🏛️🛕</h2>
 				</section>
+				<section>
+					<h2>First things first</h2>
+					<code>mehr RAM, mehr Netzwerkbandbreite</code>
+				</section>
+				<section><img src="images/run2.png"></section>
+				<section><img src="images/run3.png"></section>
+				<section><img src="images/run-up-and-down.png" class="r-stretch"></section>
 				<section data-background-color="white">
+					<h2>🆕🆕🆕</h2>
 					<img src="images/arch2.png" class="r-stretch">
 					<aside class="notes">
 						QLoad + Jenkins
@@ -228,15 +268,27 @@
 
 					</aside>
 				</section>
+				<section><img src="images/config-real.png"></section>
+				<section><img src="images/run-real.png"></section>
 				<section>
-					grafik mit weniger auslastung
+					<h2>StrippedBatch O.M.G. 😱</h2>
+					<code>mode=StrippedBatch</code>
+				</section>
+				<section>
+					<code>mode=StrippedBatch</code>
+					<img src="images/run-stripped.png" class="r-stretch">
 				</section>
 			</section>
 			<section>
 				<section>
-					<h2>Ergebnisse 📈📉</h2>
+					<h2>Ergebnisse 📉</h2>
 				</section>
 				<section>
+					<h2>Grafana 📈</h2>
+					<img src="images/ergebnisse-grafana.png" class="r-stretch">
+				</section>
+				<section>
+					<h2>Python 🐍</h2>
 					<img src="images/ergebnis.png" class="r-stretch">
 					<aside class="notes">
 						Nicht vorenthalten
@@ -244,20 +296,22 @@
 					</aside>
 				</section>
 				<section>
-					und noch mehr
-				</section>
-				<section>
-					und noch mehr
+					<img src="images/ergebnis2.png" class="r-stretch">
+					<aside class="notes">
+						am Ende hat mit Skalierung geklappt, und wir waren froh es ausprobiert zu haben. Aber es lief
+						von Anfang an stabil, es gab nie Fehler.
+					</aside>
 				</section>
 			</section>
 			<section>
 				<h2>Lösungsansätze (mittel-/langfristig) ⭐</h2>
-				<aside class="notes">
-					K6 (aber eben kein report; wie viel sie schaffen ….)
-					Report halt asynchron laufen lassen
-					Responses nicht im report speichern
-					Skalierung selbst implementieren :D
-				</aside>
+				<ul>
+					<li>mehrere Systeme für Lastagenten</li>
+					<li>Responses nicht im report speichern (StrippedBatch)</li>
+					<li>Report asynchron laufen lassen</li>
+					<li>Custom Listener der Responses nur im Fehlerfall speichert</li>
+					<li>K6 statt JMeter (Kein Reporting, Kein Master-Slave; Aber ...)</li>
+				</ul>
 			</section>
 			<section>
 				<h2>Fazit 🩻</h2>
