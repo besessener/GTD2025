@@ -22,6 +22,13 @@
 			<section>
 				<h2>Wenn Performancetest-Tools unter ihrer eigenen Last zusammenbrechen</h2>
 				<p><img src="images/cover.png" style="width:40%"></p>
+				<aside class="notes">
+					Vielleicht seid ihr etwas überrascht über den Redner und das Thema. Ich habe gestern Nachmittag erfahren,
+					dass ich als Ersatz einspringen kann. Und hier bin ich nun und freue mich, dass einige von euch hier sind, 
+					um den Vortrag "Wenn Performancetest-Tools unter ihrer eigenen Last zusammenbrechen" zu hören.
+					Die Vorbereitungszeit war jetzt nicht all zu lang. Ich versuche deswegen auch mehr auf praktische Erfahrungen einzugehen,
+					statt es zu theoretisch zu gestalten. Angereichert mit der ein oder anderen Anekdote.
+				</aside>
 			</section>
 			<section>
 				<h2>Agenda 📋</h2>
@@ -39,14 +46,19 @@
 				<h2>Der Sprecher 🙊</h2><img src="images/matthias.png" class="r-stretch">
 				<p>Matthias Eggert</p>
 				<aside class="notes">
-					Shhh, these are your private notes 📝
+					Ich bin Matthias Eggert, 37 Jahre hier aus Frankfurt. Ich bin mittlerweile 12 Jahre professionell in der Softwareentwicklung tätig.
+					Davon war ich 10 Jahre in der Automobilindustrie, hier bei Conti in Frankfurt Rödelheim und habe mich dort mit
+					Developer-Plattformen beschäftigt. Das heißt, ich habe Software für Softwareentwickler entwickelt.
+					Im Laufe der Zeit habe ich mich auf CI/CD und DevOps spezialisiert. Aus meiner DevOps-Rolle heraus bin ich dann bei
+					Qytera gelandet, wo ich für Testautomatisierung, insbesondere von Performancetests zuständig bin.
 				</aside>
 			</section>
 			<section>
 				<section>
 					<h2>Testobjekt 🧫</h2>
 					<aside class="notes">
-						Shhh, these are your private notes 📝
+						Lasst uns doch direkt mal anschauen was eigentlich getestet wurde. Denn ohne das Testobjekt ist es
+						ja auch schwer zu sagen, was wie warum getestet wurde.
 					</aside>
 				</section>
 				<section>
@@ -56,13 +68,34 @@
 						<li>7-stellige Zahl von Requests pro Minute</li>
 						<li>Und zwar in der Regel genau an einem Tag</li>
 						<li>Auf unterschiedliche Endpunkte</li>
+						<li>Große Responses</li>
 					</ul>
 					<aside class="notes">
-						Shhh, these are your private notes 📝
+						Es handelt sich um eine Webanwendung mit mehreren REST Schnittstellen, die öffentlich zugänglich ist.
+						Die Webanwendung selbst ist für einen demokratischen Prozess zuständig, bei dem Millionen von Menschen
+						und Diensten drauf zugreifen. Dabei reden für von mehreren zehn millionen Zugriffen pro Minute.
+						Das ganze passiert in der Regel an einem Tag. Nicht davor und nicht dannach. In der Regel ist das bei uns ein Sonntag. 
+						Die Anfragen gehen natürlich auf verschiedene Endpunkte. JSON Antworten und auch Dateiexporte.
 					</aside>
 				</section>
-				<section data-background-color="white"><img src="images/halber-donut.png" class="r-stretch"></section>
-				<section data-background-color="white"><img src="images/donuts.png" class="r-stretch"></section>
+				<section data-background-color="white">
+					<img src="images/halber-donut.png" class="r-stretch">
+					<aside class="notes">
+						Ich denke damit ist der krypische Teil der Erklärungen vorbei. Es geht um die Ergebnissanzeige der 
+						Kommunahl- und Europawahlen 2024. Es handelte sich hierbei um einen behördlichen Auftrag, im Vorfeld
+						zu den Wahlen die utzerlast entsprechend zu simulieren.
+						Ich muss mich hier entschudligen. Hier ist ein bischen viel gelb zu sehen.
+						 Die Grafik hab ich Ende November letzten Jahres bereits generieren lassen. Also durch ChatGPT. 
+						 Und ChatGPT war in dem Moment noch nicht aktuell genug, und wusste nicht, dass die liberalen sich bereits selbst zerstört hatten.
+					</aside>
+				</section>
+				<section data-background-color="white">
+					<img src="images/donuts.png" class="r-stretch">
+					<aside class="notes">
+						Aber zurück zu den Wahlen. Wichtig dabei war, dass ein besonders hohes Wahlinteresse prognostiziert wurde. viele politische Turbulenzen, die wir alle kennen.
+						Dazu natürlich der Umstand, dass mehrere Bundesländer parallel Kommunahlwahlen abhalten während ganz Europa noch wählt.
+					</aside>
+				</section>
 				<section>
 					<h2>Zurück zum Testobjekt 🗽</h2>
 					<ul>
@@ -72,9 +105,12 @@
 						<li>Auf unterschiedliche Endpunkte</li>
 						<li>Große Responses</li>
 						<li>DDoS</li>
+						<li>Angriffe aus dem Ausland</li>
 					</ul>
 					<aside class="notes">
-						Shhh, these are your private notes 📝
+						Jetzt muss man also sicherstellen, dass das System einen so großen Nutzerandrang standhalten kann, gleichzeitig aber 
+						gegen DDos-Angriffe und mögliche Angriffe eines potentiellen Schurkenstaatees aus dem Ausland gewappnet ist.
+						Aber schwenken wir mal rüber zu Performance testing.
 					</aside>
 				</section>
 			</section>
@@ -86,7 +122,12 @@
 					<img src="images/chuck.png" alt="Chuck Norris" class="r-stretch">
 					<h1 class="fragment">💩</h1>
 					<aside class="notes">
-						Shhh, these are your private notes 📝
+						Natürlich könnte man jetzt sagen: "ach hat letzte mal geklappt, die paar mehr User die schaffen wir auch dieses mal". 
+						frei nach dem Motto, testing is for wimps, ral men test in production. Kann man so machen, aber ist dann eben kacke. 
+						Aber wir sind ja Tester, wir sind keine "echten kerle". Der gemeine Tester ist ja Grundsätzlich
+						ängstlich und skeptisch. zu recht.
+						Man stelle sich nur die Bild Schlagzeile vor: "Demokratie offline – Kein Signal am Wahltag", "Ampel-Koalition steht auf Rot – Wahlergebnisse im Blindflug" oder "Digitalisierung made in Germany".
+						Nein wir sind wimps, wir wollen testen. was denn genau?
 					</aside>
 				</section>
 				<section>
@@ -117,14 +158,20 @@
 					<h2>Auto-Scaling What 🚗🤔❓</h2>
 					<img src="images/cloud.webp" class="r-stretch">
 					<aside class="notes">
-						Open source apache foundation
-						Verhältnismäßg resourcenhungrig
-						Aber zuverlässig
+						Es gäbe ja noch tests wie Spike-Testing oder deutsch Lastspitzentests. Oder auch Skalierungstests. 
+						Die wären durchaus wichtig wenn wir uns in einem dynamischen Umfeld bewegen würden wo die Nutzerzahlen ständig schwanken.
+						Aber in unserem Fall ist das nicht so. Wir haben eine große Last an einem Tag, und dann ist es wieder ruhig.
+						Entsprechend ist unser Testobjekt auch konstant groß dimensioniert. Es gibt kein Auto Scaling. Das ist ganz einfach überflüssig.
 					</aside>
 				</section>
 				<section>
 					<h2>Konstante Hochlast ↗️</h2>
 					<img src="images/hochlast.png" alt="Performance-Testing Arten" class="r-stretch">
+					<aside class="notes">
+						Und weil das eben so ist, brauchen wir auch nur eine extrem hohe aber konstante Last zu erzeugen. Und das haben wior gemacht. 
+						und zwar mit apache jmeter. in unserer eigenen kleinen Umgebung Namens Qload. Das hilft und Lastagenten in der Cloud zu erzeugen.
+						Ich werde im folgenden allerdings eher auf die technischen details eingehen, wie man sowas umsetzen kann, als hieraus eine Werbeveranstaltung werden zu lassen.
+					</aside>
 				</section>
 			</section>
 			<section>
@@ -132,7 +179,7 @@
 					<section>
 						<h2>Apache JMeter 🪶</h2>
 						<ul>
-							<li>Open Source</li>
+							<li><b>Open Source</b></li>
 							<li>Java basiert</li>
 							<li>GUI und CLI</li>
 							<li>Skalierbar</li>
@@ -189,14 +236,18 @@
 				<section>
 					<h2>⛅ = 😇</h2>
 					<aside class="notes">
-						Ich sehe alles in grafana live, ich kann mir den report anschauen. also bestimmt. super viel
-						last erzeugen dank der cloud. Funktioniert auch echt super. oder nicht?
+						JMeter kann also genauso krass skalieren wie mein Testobjekt. super krass. 
+						Ich fahre einen Tag für ein paar Stunden hunder Lastagenten hoch, führe JMeter darauf aus. Schicke mir dann am
+						besten noch Ergebnisse in meine Zeitseriendatenbank wie prometheus oder influxdb. geil. Kosten überschaubar.
+						Das perfekte Cloud Projekt.
 					</aside>
 				</section>
 				<section>
 					<h2>⛈️ = 😈</h2>
 					<aside class="notes">
-						Shhh, these are your private notes 📝
+						Wäre der Teufel nicht ein fieses gemeines Eichhörnchen.
+						Denn so einfach wie es theoretisch ist war es dann doch nicht. 
+						Oder wie ein Professor mal zu mir meinte: "in der Theorie sind Theorie und Praxis dichter beieinander als in der Praxis".
 					</aside>
 				</section>
 			</section>
@@ -206,6 +257,14 @@
 				</section>
 				<section data-background-color="white">
 					<img src="images/arch1.png" class="r-stretch">
+					<aside class="notes">
+						Also was haben wir hier gemacht? Wir haben einfach ein System, was uns EC2 Instanzen in der AWS-Cloud zur verfügung stellt.
+						Oder eben vergleichbare bei anderen Cloud-Anbietern. Explizit aber keine Fargate Instantzen, denn die haben keine garantierten Netzwerkbandbreiten und sind 
+						bei solchen Dimensionen an Tests unter Umständen nicht ausreichend schnell.
+						Wir haben also eine Instanz, die uns die Lastagenten zur Verfügung stellt. Und dann haben wir noch eine Instanz, die uns die Visualisierung zur Verfügung stellt, alo Influx und Grafana.
+						Dann brauch man noch ein Möglichkeit die JMeter Dateien auf alle Agents zu verteilen und startet JMeter einfach im Controller-worker-mode.
+						Viel mehr ist es nicht. Das ist die Grundidee. Wie die Instanzen jetzt verknüpft sind, also in einem Kubernetes Cluter oder ob man das selbst managed, ist völlig egal.
+					</aside>
 				</section>
 			</section>
 			<section>
@@ -250,8 +309,7 @@
 				<section>
 					<blockquote class="r-stretch">However, remote mode does use more resources than running the same
 						number of CLI mode tests independently. If many server instances are used, the client JMeter can
-						become overloaded, as can the client network connection. This has been improved by switching to
-						Stripped modes (see below) but you should always check that your client is not overloaded.
+						become overloaded, as can the client network connection. [...] always check that your client is not overloaded.
 					</blockquote>
 				</section>
 				<section>
@@ -266,42 +324,60 @@
 					<h2>First things first</h2>
 					<code>mehr RAM, mehr Netzwerkbandbreite</code>
 					<aside class="notes">
-						Shhh, these are your private notes 📝
+						Was ist aufgefallen. Tatsächlich ist der RAM Verbrauch immer weiter angestiegen. Aber er ist unproportional angestiegen. Nämlich ab dem Zeitpunkt, an dem
+						die Netzwerkbandbreite nicht mehr ausreichte. Scheinbar wird alles, was nicht verschickt werden kann, im RAM vorgehalten und führt zu einer Explosion. 
+						Ich hatte zunächst nur versucht RAM zu erhöhen und bin gescheitert an massiven Problemen. Der verbrauch ging mit der Länge des Tests immer weiter hoch.
+						Erst als ich dann auch die Netzwerkbandbreite erhöht habe, ging der RAM Verbrauch wieder runter.
+						Deswegen hier erstmal die Empfehlung: mehr RAM und mehr Netzwerkbandbreite für den Controller. Und dann erst alles andere.
 					</aside>
 				</section>
 				<section><img src="images/run2.png"></section>
 				<section><img src="images/run3.png"></section>
 				<section><img src="images/run-up-and-down.png" class="r-stretch"></section>
+				<section>
+					<img src="images/config-real.png">
+					<aside class="notes">
+						Hier habe ich es jetzt massiv übertrieben. Aber better safe than sorry.
+						Ob man am Ende für eine Instanz 1$ pro Stunde oder 5$ pro Stunde ausgibt, ist dann auch egal bei 3h Testlaufzeit.
+					</aside>
+				</section>
 				<section data-background-color="white">
 					<h2>🆕🆕🆕</h2>
 					<img src="images/arch2.png" class="r-stretch">
 					<aside class="notes">
+						Ich stand ja noch vor meinem Grafana Problem. Ich konnte nicht mehr anständig in die Daten schauen, weil es einfach zu viele waren. Das fetchen
+						aus Influx war schon problematisch, die Aggregation dann zusätzlich. Da kann man sicher noch was machen. 
+						Aber ich stand eben auch unter Zeitdruck und habeeine andere einfache pragmatische lösung gesucht und gefunden.
+						
 						QLoad + Jenkins
 						Kann jeder, auch ohne cloud Kenntnisse
 						Einfach agents starten und tests unabhängig laufen lassen
-						Am ende reports einsammeln und gesamtreport erstellen
-
-
-						Wir konnten mehr, aber es wurde immer langsamer
-						Keine Fehler
-						Schwierigkeit die richtige balance aus agents und cpu last zu finden
-						Und wir waren nur statisch unterwegs
-						Fargate könnte man hier schon vergessen, interne netzwerklast ist zu hoch
-
+						Am ende reports einsammeln und gesamtreport erstellen.
 					</aside>
 				</section>
-				<section><img src="images/config-real.png"></section>
 				<section data-visibility="hidden"><img src="images/run-real.png"></section>
 				<section>
 					<h2>StrippedBatch O.M.G. 😱</h2>
 					<code>mode=StrippedBatch</code>
 					<aside class="notes">
-						Shhh, these are your private notes 📝
+						Tja und dann kam ein Zufallsfund. Nachdem ich einiges recherchiert hatte. 
+						Wir hatten in unserem Setup eine alte JMeter Konfiguration. Mit dieser Konfiguration
+						sammelte der JMeter Controller nicht nur Werte wie Status Code, Antwortzit usw., sondern auch
+						den eigentlichen Inhalt der Antworten. Deswegen war der Controller so überlastet.
+						Er war die ganze Zeit damit beschäftigt, die Antworten von den Workern zu sammeln und zu speichern.
+						Fühlte sich im Nachgang etwas dämlich an, dass ein einfaches boolean Flag in der konfig genau so EinProblem verursachen kann.
+						Aber meistens sind die Antworten schon interessant. Gerade bei Fehlern würde man dann schon im Nachgangden eigentlichen Grund noch wissen wollen.
+						Deswegen hatten wir diese option mit gutem Grund auch aktiviert. Aber in diesem Fall führte es eben zum Overkill.
+						Ohne den Modus, sah das ganze dann so aus.
 					</aside>
 				</section>
 				<section>
 					<code>mode=StrippedBatch</code>
 					<img src="images/run-stripped.png" class="r-stretch">
+					<aside class="notes">
+						Plötzlich ist es nicht mehr der Controller der Netzwerklast erzeugt, sondern nur noch die Worker.
+						Und zwar in einem erträglichen Verhältnis.
+					</aside>
 				</section>
 			</section>
 			<section>
